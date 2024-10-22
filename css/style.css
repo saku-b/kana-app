@@ -1,0 +1,36 @@
+.noto-sans-jp-body {
+    font-family: "Noto Sans JP", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1, h2, h3, h4, p {
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+body {
+    background-color: #1b1e21;
+    color: #EEEEEE;
+}
+
+img.front-img {
+    max-width: 300px; 
+    width: 100%;     
+    height: auto;    
+}
+
+.container {
+    margin-top: 50px;
+}
+
+input#userInput {
+    width: 150px; /* Set the width as needed */
+    font-size: 16px; /* Adjust font size if necessary */
+    padding: 5px; /* Adjust padding for a smaller look */
+    text-align: center;
+}
+
+button {
+    background-color: aqua;
+}
