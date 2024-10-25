@@ -47,7 +47,6 @@ const kanaLists = {
         { kana: "わ", romaji: "wa" },
         { kana: "を", romaji: "wo" },
         { kana: "ん", romaji: "n" },
-
     ],
     katakana: [
         { kana: "ア", romaji: "a" },
@@ -99,33 +98,51 @@ const kanaLists = {
     ]
 };
 
-let correctCount = 0;
-let incorrectCount = 0;
+// Initialize scores from localStorage or set to 0 if not available
+let correctCount = parseInt(localStorage.getItem('correctCount')) || 0;
+let incorrectCount = parseInt(localStorage.getItem('incorrectCount')) || 0;
+
+// Display scores on page load
+updateScoreDisplay();
+
+// Function to update the score display
+function updateScoreDisplay() {
+    const score = document.getElementById("score");
+    if (score) {
+        score.textContent = `Correct: ${correctCount}, Incorrect: ${incorrectCount}`;
+    }
+}
+
+// Save scores to localStorage
+function saveScores() {
+    localStorage.setItem('correctCount', correctCount);
+    localStorage.setItem('incorrectCount', incorrectCount);
+}
+
 let currentKana = {};
 let currentType = 'hiragana'; // Default to hiragana
 
-// Function to get a random kana character
+// Get random kana 
 function getRandomKana() {
     const randomIndex = Math.floor(Math.random() * kanaLists[currentType].length);
     return kanaLists[currentType][randomIndex];
 }
 
-// Function to display a random kana character
+// Display random kana
 function displayRandomKana() {
     currentKana = getRandomKana();
     const kanaDisplay = document.getElementById("kanaDisplay");
     if (kanaDisplay) {
-        kanaDisplay.textContent = currentKana.kana; // Set the text to the kana character
+        kanaDisplay.textContent = currentKana.kana;
     } else {
         console.error("Kana display element not found!");
     }
 }
 
-// Function to handle user input
+// Handle input
 function handleSubmit() {
     const userInput = document.getElementById("userInput").value.toLowerCase();
     const feedback = document.getElementById("feedback");
-    const score = document.getElementById("score");
 
     if (userInput === currentKana.romaji) {
         feedback.textContent = "Correct!";
@@ -135,28 +152,31 @@ function handleSubmit() {
         incorrectCount++;
     }
 
+    // Save scores
+    saveScores();
+
     // Update score
-    score.textContent = `Correct: ${correctCount}, Incorrect: ${incorrectCount}`;
+    updateScoreDisplay();
 
     // Clear input
     document.getElementById("userInput").value = "";
 
-    // Display new random
+    // Display new random kana
     displayRandomKana();
 }
 
-// Event listener for submit button
+// Submit button
 document.getElementById("submitBtn").addEventListener("click", handleSubmit);
 
-//Event listener for enter key
+// Enter key
 document.getElementById("userInput").addEventListener("keydown", function (event) {
-    if (event.key === "Enter") { // Check if Enter key is pressed
-        event.preventDefault(); // Prevent form submission if inside a form
-        handleSubmit(); // Call the submit function
+    if (event.key === "Enter") {
+        event.preventDefault();
+        handleSubmit();
     }
 });
 
-// Display first random
+// Display first random kana
 displayRandomKana();
 
 // Set type
@@ -165,6 +185,10 @@ function setKanaType(type) {
     currentType = type;
     correctCount = 0;
     incorrectCount = 0;
+
+    // Reset scores in localStorage
+    saveScores();
+
     displayRandomKana();
 }
 

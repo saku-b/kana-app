@@ -5,32 +5,49 @@
     font-style: normal;
 }
 
-h1, h2, h3, h4, p {
+h1,
+h2,
+h3,
+h4,
+p {
     font-family: "Noto Sans JP", sans-serif;
 }
 
 body {
     background-color: #1b1e21;
     color: #EEEEEE;
+    min-height: 100%;
 }
 
 img.front-img {
-    max-width: 300px; 
-    width: 100%;     
-    height: auto;    
+    max-width: 300px;
+    width: 100%;
+    height: auto;
 }
 
 .container {
     margin-top: 50px;
+    min-height: 100%;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus,
+.btn-primary:active:focus {
+    background-color: darkgrey;
+    border-color: #EEEEEE;
 }
 
 input#userInput {
-    width: 150px; /* Set the width as needed */
-    font-size: 16px; /* Adjust font size if necessary */
-    padding: 5px; /* Adjust padding for a smaller look */
+    width: 150px;
+    font-size: 16px;
+    padding: 5px;
     text-align: center;
 }
 
-button {
-    background-color: aqua;
+footer {
+    text-align: center;
+    font-size: x-small;
 }
