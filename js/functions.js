@@ -113,14 +113,14 @@ function updateScoreDisplay() {
     }
 }
 
-// Save scores to localStorage
+// Save scores to localstorage
 function saveScores() {
     localStorage.setItem('correctCount', correctCount);
     localStorage.setItem('incorrectCount', incorrectCount);
 }
 
 let currentKana = {};
-let currentType = 'hiragana'; // Default to hiragana
+let currentType = 'hiragana'; // hiragana default
 
 // Get random kana 
 function getRandomKana() {
@@ -181,12 +181,12 @@ displayRandomKana();
 
 // Set type
 function setKanaType(type) {
-    console.log(`Setting kana type to: ${type}`); // console.log kana type
+    console.log(`Kana type: ${type}`); // log kana type
     currentType = type;
     correctCount = 0;
     incorrectCount = 0;
 
-    // Reset scores in localStorage
+    // Reset scores in localstorage
     saveScores();
 
     displayRandomKana();
