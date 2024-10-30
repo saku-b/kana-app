@@ -19,6 +19,14 @@ body {
     min-height: 100%;
 }
 
+a {
+    color: #efefef;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
 img.front-img {
     max-width: 300px;
     width: 100%;
@@ -36,7 +44,7 @@ img.front-img {
 .btn-primary:visited,
 .btn-primary:focus,
 .btn-primary:active:focus {
-    background-color: darkgrey;
+    background-color: #666666;
     border-color: #EEEEEE;
 }
 

@@ -1,4 +1,4 @@
-// Hiragana and Katakana lists
+// hiragana and Katakana lists
 const kanaLists = {
     hiragana: [
         { kana: "あ", romaji: "a" },
@@ -98,14 +98,13 @@ const kanaLists = {
     ]
 };
 
-// Initialize scores from localStorage or set to 0 if not available
+// scores from localstorage
 let correctCount = parseInt(localStorage.getItem('correctCount')) || 0;
 let incorrectCount = parseInt(localStorage.getItem('incorrectCount')) || 0;
 
-// Display scores on page load
 updateScoreDisplay();
 
-// Function to update the score display
+// update the score display
 function updateScoreDisplay() {
     const score = document.getElementById("score");
     if (score) {
@@ -113,33 +112,30 @@ function updateScoreDisplay() {
     }
 }
 
-// Save scores to localstorage
+// save score
 function saveScores() {
     localStorage.setItem('correctCount', correctCount);
     localStorage.setItem('incorrectCount', incorrectCount);
 }
 
 let currentKana = {};
-let currentType = 'hiragana'; // hiragana default
+let currentType = 'hiragana'; // Default to hiragana
 
-// Get random kana 
+// get random kana 
 function getRandomKana() {
     const randomIndex = Math.floor(Math.random() * kanaLists[currentType].length);
     return kanaLists[currentType][randomIndex];
 }
 
-// Display random kana
+// display random kana
 function displayRandomKana() {
-    currentKana = getRandomKana();
     const kanaDisplay = document.getElementById("kanaDisplay");
-    if (kanaDisplay) {
-        kanaDisplay.textContent = currentKana.kana;
-    } else {
-        console.error("Kana display element not found!");
-    }
+    currentKana = getRandomKana();
+    kanaDisplay.textContent = currentKana.kana;
 }
 
-// Handle input
+
+// input
 function handleSubmit() {
     const userInput = document.getElementById("userInput").value.toLowerCase();
     const feedback = document.getElementById("feedback");
@@ -152,23 +148,23 @@ function handleSubmit() {
         incorrectCount++;
     }
 
-    // Save scores
+    // save score
     saveScores();
 
-    // Update score
+    // update score
     updateScoreDisplay();
 
-    // Clear input
+    // clear input
     document.getElementById("userInput").value = "";
 
-    // Display new random kana
+    // display new random kana
     displayRandomKana();
 }
 
-// Submit button
+// submit button
 document.getElementById("submitBtn").addEventListener("click", handleSubmit);
 
-// Enter key
+// enter key
 document.getElementById("userInput").addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -176,21 +172,19 @@ document.getElementById("userInput").addEventListener("keydown", function (event
     }
 });
 
-// Display first random kana
+// first random kana
 displayRandomKana();
 
-// Set type
+// type
 function setKanaType(type) {
-    console.log(`Kana type: ${type}`); // log kana type
+    console.log(`Kana type: ${type}`);
     currentType = type;
-    correctCount = 0;
-    incorrectCount = 0;
 
-    // Reset scores in localstorage
+    // reset localstorage score
     saveScores();
 
     displayRandomKana();
 }
 
-// Make function available globally
+// sets kana type
 window.setKanaType = setKanaType;
