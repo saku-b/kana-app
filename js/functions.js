@@ -180,10 +180,6 @@ function setKanaType(type) {
     console.log(`Kana type: ${type}`);
     currentType = type;
 
-    // reset localstorage score
-    saveScores();
-
-    displayRandomKana();
 }
 
 // sets kana type
