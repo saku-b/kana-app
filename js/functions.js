@@ -180,6 +180,9 @@ function setKanaType(type) {
     console.log(`Kana type: ${type}`);
     currentType = type;
 
+    saveScores();
+
+    displayRandomKana();
 }
 
 // sets kana type
