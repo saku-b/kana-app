@@ -121,7 +121,7 @@ function saveScores() {
 let currentKana = {};
 let currentType = 'hiragana'; // Default to hiragana
 
-// get random kana 
+// get random kana
 function getRandomKana() {
     const randomIndex = Math.floor(Math.random() * kanaLists[currentType].length);
     return kanaLists[currentType][randomIndex];
